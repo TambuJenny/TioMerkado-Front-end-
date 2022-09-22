@@ -9,14 +9,16 @@ import {
   ComputerTower,
 } from "phosphor-react";
 import Carousel from "nuka-carousel";
+import axios from "axios";
+import * as Dialog from "@radix-ui/react-dialog";
 
 import img2 from "./assets/image2.png";
 import img3 from "./assets/image3.png";
 import { CardProduct } from "./components/CardProduct";
 import { useEffect, useState } from "react";
 
-import axios from "axios";
 import { TypeCard } from "./DomainServices/Types";
+import { Modal } from "./components/Modal";
 
 interface cardType extends TypeCard {}
 
@@ -250,7 +252,10 @@ function App() {
           />
         </div>
         <div className=" w-full ">
+
           <div className="p-5 grid grid-cols-4 gap-4">
+          <Dialog.Root>
+            <Modal />
           {
               products.map((value)=> {
                 return(
@@ -270,6 +275,7 @@ function App() {
                 );
               })
             }
+            </Dialog.Root>
           </div>
         </div>
       </div>
