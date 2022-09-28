@@ -17,22 +17,29 @@ import img3 from "./assets/image3.png";
 import { CardProduct } from "./components/CardProduct";
 import { useEffect, useState } from "react";
 
-import { TypeCard } from "./DomainServices/Types";
+import { TypeBrand, TypeCard } from "./DomainServices/Types";
 import { Modal } from "./components/Modal";
+import { ButtonBrand } from "./components/ButtonBrand";
 
 interface cardType extends TypeCard {}
+interface brandType extends TypeBrand {}
 
 function App() {
 
   const [products, setProducts] = useState<cardType[]>([]);
+  const [brands,setBrands] = useState<Array<TypeBrand>>([]);
+  const urlBase = "https://localhost:7108/api/product/";
 
   useEffect(() => 
   {
-    axios("https://localhost:7108/api/PC/GetAll").
+    axios(urlBase+"PC/GetAll").
     then((response) => setProducts(response.data));
+
+    axios(urlBase+"Brand/GetAll").
+    then((response) => setBrands(response.data));
   }, []);
 
-    console.log(products);
+    console.log(brands);
 
   return (
     <>
@@ -40,7 +47,7 @@ function App() {
         <div className=" flex w-full h-16 p-4 justify-between items-center">
           <div className="flex-row space-x-6">
             <a href="" className="text-3xl">
-              <span className="font-bold">Tio</span>Merkado
+              <span className="font-black">Tio</span>/Merkado
             </a>
             <a href="" className="">
               Suporte
@@ -121,117 +128,17 @@ function App() {
             {" "}
             Modelos {" "}
           </p>
-
           <div className="p-5 inline-grid grid-cols-3 gap-4 overflow-y-auto h-80">
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
+              {
+                brands.map((values)=>{
+                    return(
+                      <ButtonBrand url={values.imgUrl} value={values.brandName} id={values.id}>
+                  
+                      </ButtonBrand>
+                    )
+                })
+              }
 
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
-
-            <button
-              title="imgmarca"
-              className="h-20 w-20 rounded bg-white drop-shadow-xl items-center justify-center flex hover:bg-[#9DC2FF] "
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1024px-HP_logo_2012.svg.png"
-                alt=""
-                className="w-12 h-12 "
-              />
-            </button>
           </div>
         </div>
 
@@ -255,11 +162,13 @@ function App() {
 
           <div className="p-5 grid grid-cols-4 gap-4">
           <Dialog.Root>
-            <Modal />
+           {/*<Modal />*/} 
+           <Modal id="08da912e-cdf4-405a-8cc9-e2cdc44a749c" />
+      
           {
               products.map((value)=> {
                 return(
-                  <CardProduct
+                    <CardProduct
                   key={value.id} 
                   id={value.id} 
                   images={value.images}

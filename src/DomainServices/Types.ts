@@ -19,3 +19,10 @@ export type TypeCard ={
 
     };
 }
+
+export type TypeBrand = 
+{
+    id:string;
+    brandName:string;
+    imgUrl:string;
+}

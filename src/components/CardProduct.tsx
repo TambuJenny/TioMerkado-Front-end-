@@ -7,6 +7,11 @@ interface cardProps extends Card  {
     
 }
 
+const GetIdProduct = (id:string)=>
+{
+    //alert (id)
+}
+
 export function CardProduct(props: cardProps) {
   return (
     <div className="h-[472px] w-72 border rounded-lg">
@@ -23,7 +28,7 @@ export function CardProduct(props: cardProps) {
         <Storefront size={25}/>
         {props.user}
       </a>
-      <Dialog.DialogTrigger   className="border-2 flex-row-reverse  gap-1  border-[#9DC2FF] font-bold  bg-white rounded flex space-x-10 h-[32px]  items-center p-1 text-sm text-blue-600 hover:drop-shadow-xl">
+      <Dialog.DialogTrigger onClick={()=>GetIdProduct(props.id)} className="border-2 flex-row-reverse  gap-1  border-[#9DC2FF] font-bold  bg-white rounded flex space-x-10 h-[32px]  items-center p-1 text-sm text-blue-600 hover:drop-shadow-xl">
         Comprar
         <ShoppingCart size={25}/>
       </Dialog.DialogTrigger>
