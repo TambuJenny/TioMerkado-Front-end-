@@ -7,9 +7,9 @@ export function NavBar() {
       <div className="border">
         <div className=" flex w-full h-16 p-4 justify-between items-center">
           <div className="flex-row space-x-6">
-            <a href="" className="text-3xl">
+            <Link to="/" className="text-3xl">
               <span className="font-black">Tio</span>/Merkado
-            </a>
+            </Link>
             <a href="" className="">
               Suporte
             </a>
