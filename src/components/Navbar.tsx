@@ -1,5 +1,6 @@
-import { MagnifyingGlass, X } from "phosphor-react";
+import { MagnifyingGlass, ShoppingCart, User, X } from "phosphor-react";
 import { Link } from "react-router-dom";
+import { ButtonSimple } from "./ButtonSimple";
 
 export function NavBar() {
   return (
@@ -40,17 +41,15 @@ export function NavBar() {
           </div>
 
           <div className="flex-row-reverse  space-x-4 items-start  gap-4 ">
-            <button
-              title="signIn"
-              className="border-2 border-[#9DC2FF] bg-white rounded  h-10 w-28 p-1 font-bold text-sm text-blue-600  hover:drop-shadow-xl"
-            >
-              Iniciar sessão
+            <button title="Iniciar sessão" className="border-2 border-[#9DC2FF]  bg-white rounded  h-10  p-1 font-bold text-sm text-blue-600  hover:drop-shadow-xl">
+                Iniciar Sessão
+                <User size={25}  className="p-0 m-0 inline " />
             </button>
             <button
               title="signIn"
-              className="border-2 border-[#9DC2FF] bg-white rounded  h-10 w-28 p-1 font-bold text-sm text-blue-600  hover:drop-shadow-xl"
-            >
+              className="border-2 border-[#9DC2FF]  bg-white rounded  h-10 w-28 p-1 font-bold text-sm text-blue-600  hover:drop-shadow-xl">
               Carrinho
+              <ShoppingCart size={25}  className="p-0 m-0 inline " />
             </button>
           </div>
         </div>
