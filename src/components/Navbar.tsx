@@ -27,9 +27,9 @@ export function NavBar(props: NavbarProps) {
           >
             <span className="font-black">Tio</span>/Merkado
           </Link>
-          <a href="" className="">
+          <Link to="" className="">
             Suporte
-          </a>
+          </Link>
           <Link to="/newAccount" className="">
             Criar Conta
           </Link>
@@ -58,14 +58,14 @@ export function NavBar(props: NavbarProps) {
         </div>
 
         <div className="flex-row-reverse  space-x-4 items-start  gap-4 ">
-        <Link
-                        to="/login"
-                        title="Iniciar sessão"
-                        className="border-2 border-[#9DC2FF]  bg-white rounded  h-10  p-2 font-bold text-sm text-blue-600  hover:drop-shadow-xl"
-                      >
-                        Iniciar Sessão
-                        <User size={25} className="p-0 m-0 inline " />
-                      </Link>
+          <Link
+            to="/login"
+            title="Iniciar sessão"
+            className="border-2 border-[#9DC2FF]  bg-white rounded  h-10  p-2 font-bold text-sm text-blue-600  hover:drop-shadow-xl"
+          >
+            Iniciar Sessão
+            <User size={25} className="p-0 m-0 inline " />
+          </Link>
           <Link
             to=""
             title="signIn"

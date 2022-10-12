@@ -30,7 +30,7 @@ export function Login() {
               Cadastrar
               <UploadSimple size={25} className="p-0 ml-5 inline " />
             </button>
-            <Link to="" className=" text-sm text-blue-600 ">
+            <Link to="/newAccount" className=" text-sm text-blue-600 ">
               Não tenho conta, criar uma
             </Link>
           </div>
