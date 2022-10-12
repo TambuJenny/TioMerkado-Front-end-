@@ -101,7 +101,7 @@ function App() {
         </div>
       </div>
 
-      <div className="flex space-x-4 pt-5 ">
+      <div className=" pt-5 lg:flex space-x-4">
         <div className="flex-initial max-w-96 w-96 pl-5">
           <input
             type="text"
@@ -111,7 +111,7 @@ function App() {
         </div>
         <div className=" w-full ">
 
-          <div className="p-5 grid grid-cols-4 gap-4">
+          <div className="p-5 gap-4 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
           <Dialog.Root>
            {/*<Modal />*/} 
            <Modal id="08da912e-cdf4-405a-8cc9-e2cdc44a749c" />
