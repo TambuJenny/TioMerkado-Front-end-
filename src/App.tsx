@@ -21,6 +21,8 @@ import { TypeBrand, TypeCard } from "./DomainServices/Types";
 import { Modal } from "./components/Modal";
 import { ButtonBrand } from "./components/ButtonBrand";
 import { NavBar } from "./components/Navbar";
+import Footer from "./components/Footer";
+
 
 interface cardType extends TypeCard {}
 interface brandType extends TypeBrand {}
@@ -150,6 +152,7 @@ function App() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
