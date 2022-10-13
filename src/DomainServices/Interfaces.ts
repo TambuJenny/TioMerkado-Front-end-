@@ -9,16 +9,16 @@ export interface User {
 }
 
 export interface Card {
-    id: string;
-    productName:string;
-    images:string;
-    brand:string;
-    ram:number;
-    hardisk: number;
-    description:string;
-    firtPrice: Float32Array;
-    failure:string;
-    user:string;
+    id?: string;
+    productName?:string;
+    images?:string;
+    brand?:string;
+    ram?:number;
+    hardisk?: number;
+    description?:string;
+    firtPrice?: Float32Array;
+    failure?:string;
+    user?:string;
 }
 
 /*export interface Pcs {

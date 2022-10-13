@@ -6,7 +6,7 @@ import {
   Desktop,
   DesktopTower,
   Cpu,
-  ComputerTower,
+  ComputerTower
 } from "phosphor-react";
 import Carousel from "nuka-carousel";
 import axios from "axios";
@@ -26,26 +26,31 @@ interface cardType extends TypeCard {}
 interface brandType extends TypeBrand {}
 
 function App() {
-
   const [products, setProducts] = useState<cardType[]>([]);
-  const [brands,setBrands] = useState<Array<TypeBrand>>([]);
+  const [productModal, setProductModal] = useState<cardType>();
+  const [brands, setBrands] = useState<Array<TypeBrand>>([]);
   const urlBase = "https://localhost:7108/api/product/";
 
-  useEffect(() => 
-  {
-    axios(urlBase+"PC/GetAll").
-    then((response) => setProducts(response.data));
+  useEffect(() => {
+    axios(urlBase + "PC/GetAll").then((response) => setProducts(response.data));
 
-    axios(urlBase+"Brand/GetAll").
-    then((response) => setBrands(response.data));
+    axios(urlBase + "Brand/GetAll").then((response) =>
+      setBrands(response.data)
+    );
   }, []);
 
-    console.log(brands);
+  function getAllInformationProductforModal(id: string) {
+    products.forEach((product) => {
+      if (product.id === id) {
+        setProductModal(product);
+      }
+    });
+  }
 
   return (
     <>
       <div className="">
-            <NavBar />
+        <NavBar />
         <div className="flex h-12 w-full text-xs text-[#787885]  items-center justify-center space-x-2  ">
           <div className="flex space-x-8  border-solid  h-12 w-40 rounded p-2 hover:bg-[#9DC2FF]">
             <button className=""> Laptops</button>
@@ -75,21 +80,18 @@ function App() {
       </div>
       <div className="flex space-x-4 border-b max-h-96 h-96 ">
         <div className="flex-initial max-w-96 w-96 h-80">
-          <p className=" text-bold pl-4 pt-4 text-lg font-medium">
-            {" "}
-            Modelos {" "}
-          </p>
+          <p className=" text-bold pl-4 pt-4 text-lg font-medium"> Modelos </p>
           <div className="p-5 inline-grid grid-cols-3 gap-4 overflow-y-auto h-80">
-              {
-                brands.map((values)=>{
-                    return(
-                      <ButtonBrand url={values.imgUrl} value={values.brandName} title={values.brandName}  id={values.id}>
-                  
-                      </ButtonBrand>
-                    )
-                })
-              }
-
+            {brands.map((values) => {
+              return (
+                <ButtonBrand
+                  url={values.imgUrl}
+                  value={values.brandName}
+                  title={values.brandName}
+                  id={values.id}
+                ></ButtonBrand>
+              );
+            })}
           </div>
         </div>
 
@@ -110,31 +112,40 @@ function App() {
           />
         </div>
         <div className=" w-full ">
-
           <div className="p-5 gap-4 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
-          <Dialog.Root>
-           {/*<Modal />*/} 
-           <Modal id="08da912e-cdf4-405a-8cc9-e2cdc44a749c" />
-      
-          {
-              products.map((value)=> {
-                return(
-                    <CardProduct
-                  key={value.id} 
-                  id={value.id} 
-                  images={value.images}
-                  description = {value.description}
-                  productName = {value.productName}
-                  brand = {value.brand.brandName}
-                  ram = {value.ram}
-                  hardisk = {value.hardisk}
-                  firtPrice = {value.firtPrice}
-                  failure = {value.failure}
-                  user = {value.user.firstName}
+            <Dialog.Root>
+              {/*<Modal 
+           id="08da912e-cdf4-405a-8cc9-e2cdc44a749c"
+           brand={productModal?.brand} />*/}
+              <Modal
+                id="08da912e-cdf4-405a-8cc9-e2cdc44a749c"
+                brand={productModal?.brand.brandName}
+                description={productModal?.description}
+                failure={productModal?.failure}
+                firtPrice={productModal?.firtPrice}
+                images={productModal?.images}
+                productName={productModal?.productName}
+              />
+              {products.map((value) => {
+                return (
+                  <CardProduct
+                    key={value.id}
+                    id={value.id}
+                    images={value.images}
+                    description={value.description}
+                    productName={value.productName}
+                    brand={value.brand.brandName}
+                    ram={value.ram}
+                    hardisk={value.hardisk}
+                    firtPrice={value.firtPrice}
+                    failure={value.failure}
+                    user={value.user.firstName}
+                    buscarDadosProdutos={() =>
+                      getAllInformationProductforModal(value.id)
+                    }
                   />
                 );
-              })
-            }
+              })}
             </Dialog.Root>
           </div>
         </div>

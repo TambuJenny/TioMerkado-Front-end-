@@ -6,18 +6,13 @@ import { useState, useEffect } from "react";
 
 interface ModalProduct extends Card {}
 
-export function Modal(props: { id: string }) {
+export function Modal(props: ModalProduct) {
 
-  const [produtosData, setProductsData] = useState("");
 
   if(props.id !== null )
   {
     //alert(props.id);
   }
-
-  useEffect(() => {
-    axios(`https://localhost:7108/api/PC/` + props.id).then((values) => {setProductsData(values.data)}
-    );}, [props.id]);
 
   return (
     <Dialog.Portal>
@@ -27,7 +22,7 @@ export function Modal(props: { id: string }) {
           </Dialog.Title>
           <div className="flex gap-3">
             <img
-              src={produtosData.images}
+              src={props.images}
               alt=""
               className="h-[200px] max-h-[200px] w-60 border"
             />
@@ -35,21 +30,21 @@ export function Modal(props: { id: string }) {
               <div className="">
                 <p className="text-sm font-black">Descrição</p>
                 <p className="text-sm pb-4">
-                  {produtosData.description}
+                  {props.description}
                   <small>
-                    {produtosData.brand} | {produtosData.ram} |{" "}
-                    {produtosData.hardisk}{" "}
+                    {props.brand} | {props.ram} |{" "}
+                    {props.hardisk}{" "}
                   </small>
                 </p>
                 <p className="text-xl font-bold">
-                  kZ {produtosData.firtPrice}{" "}
+                  kZ {props.firtPrice}{" "}
                 </p>
                 <p className="text-left font-light text-xs pb-3">
-                  {produtosData.failure}
+                  {props.failure}
                 </p>
               </div>
               <div className="flex flex-row-reverse pt-4 gap-4">
-                <button className="border-2 flex-row-reverse  gap-1  border-[#fff] font-bold  bg-green-400 rounded flex space-x-10 h-[32px]  items-center p-1 text-sm text-white hover:drop-shadow-xl">
+                <button className="border-2 flex-row-reverse  gap-1  border-green-400 font-bold  bg-green-400 rounded flex space-x-10 h-[32px]  items-center p-1 text-sm text-white hover:drop-shadow-xl">
                   Comprar no Whatsapp
                   <WhatsappLogo size={25} />
                 </button>
