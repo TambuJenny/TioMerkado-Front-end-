@@ -3,38 +3,40 @@ import { BackgroundAction } from "../../components/BackgroundAction";
 import Input from "../../components/form/Input";
 import { NavBar } from "../../components/Navbar";
 import { UploadSimple } from "phosphor-react";
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from "react";
 import axios, { AxiosError } from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { notifyError, notifySucess } from "../../DomainServices/Alerts";
 
 export function Login() {
-
   const urlBase = "https://localhost:7108/api/";
+
   async function LoginAccount(event: FormEvent) {
     event.preventDefault();
 
     const formData = new FormData(event.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
-    var responseData = "";
 
     try {
-      const response = await axios.post(urlBase+"account/UserLogin", {
+      const response = await axios.post(urlBase + "account/UserLogin", {
         email: data.email,
         password: data.pass
       });
 
-      console.log(response.data)
+      console.log(response.data);
 
-      alert("LOGIN FEITO");
+      notifySucess("Login efetuado com sucesso !");
     } catch (error) {
-      
-      responseData = error.response.data;
-      alert(responseData);
+      notifyError(error.response.data);
     }
   }
 
   return (
     <div className="">
+      <ToastContainer />
       <NavBar />
+
       <BackgroundAction
         action="Iniciar Sessão"
         descriçao="Iniciar sessão para beneficiar mais dos nossos serviços"
