@@ -3,8 +3,35 @@ import { BackgroundAction } from "../../components/BackgroundAction";
 import Input from "../../components/form/Input";
 import { NavBar } from "../../components/Navbar";
 import { UploadSimple } from "phosphor-react";
+import { FormEvent, useState } from 'react';
+import axios, { AxiosError } from "axios";
 
 export function Login() {
+
+  const urlBase = "https://localhost:7108/api/";
+  async function LoginAccount(event: FormEvent) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target as HTMLFormElement);
+    const data = Object.fromEntries(formData);
+    var responseData = "";
+
+    try {
+      const response = await axios.post(urlBase+"account/UserLogin", {
+        email: data.email,
+        password: data.pass
+      });
+
+      console.log(response.data)
+
+      alert("LOGIN FEITO");
+    } catch (error) {
+      
+      responseData = error.response.data;
+      alert(responseData);
+    }
+  }
+
   return (
     <div className="">
       <NavBar />
@@ -14,12 +41,21 @@ export function Login() {
       />
       <div className="fixed bg-white my-5 px-10 text-black top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-sm w-auto h-[450px] shadow-lg shadow-black/25 ">
         <h2 className="pt-6 text-2sl border-b pb-2">Login</h2>
-        <form action="">
+        <form action="" onSubmit={LoginAccount}>
           <div className="flex flex-col pt-8 pb-8">
             <label className="text-sm"> E-mail ou Telefone</label>
-            <Input placeholder="Digite e-mail ou numero de telefone" required />
+            <Input
+              placeholder="Digite e-mail ou numero de telefone"
+              required
+              name="email"
+            />
             <label className="text-sm"> Senha</label>
-            <Input type="password" placeholder="Digite a senha" required />
+            <Input
+              type="password"
+              placeholder="Digite a senha"
+              required
+              name="pass"
+            />
           </div>
 
           <div className="flex justify-center flex-col items-center">

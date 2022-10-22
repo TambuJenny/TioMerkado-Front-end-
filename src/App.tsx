@@ -116,17 +116,17 @@ function App() {
         <div className=" w-full ">
           <div className="p-5 gap-4 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2">
             <Dialog.Root>
-              {/*<Modal 
-           id="08da912e-cdf4-405a-8cc9-e2cdc44a749c"
-           brand={productModal?.brand} />*/}
               <Modal
-                id="08da912e-cdf4-405a-8cc9-e2cdc44a749c"
+                id={productModal?.id}
                 brand={productModal?.brand.brandName}
                 description={productModal?.description}
                 failure={productModal?.failure}
                 firtPrice={productModal?.firtPrice}
                 images={productModal?.images}
                 productName={productModal?.productName}
+                ram={productModal?.ram}
+                hardisk={productModal?.hardisk}
+                key={productModal?.id}
               />
               {products.map((value) => {
                 return (

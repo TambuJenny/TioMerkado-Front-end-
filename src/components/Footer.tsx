@@ -13,7 +13,8 @@ export default function Footer() {
           >
             <span className="font-black">Tio</span>/Merkado
           </Link>
-             <small>  © 2022 - Todos direitos reservado</small>
+             <small>  © 2022 - Todos direitos reservado </small>
+             <p><small>By Tambu M. Jenny</small></p>
             </div>
               <div className=" flex space-x-40flex space-x-20 w-auto">
                 <div className=" flex-col">

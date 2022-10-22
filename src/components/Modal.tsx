@@ -1,19 +1,11 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { ShoppingCart, WhatsappLogo } from "phosphor-react";
 import { Card } from "../DomainServices/Interfaces";
-import axios from "axios";
-import { useState, useEffect } from "react";
 
 interface ModalProduct extends Card {}
 
 export function Modal(props: ModalProduct) {
-
-
-  if(props.id !== null )
-  {
-    //alert(props.id);
-  }
-
+console.log(props)
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="bg-black/60 inset-0 fixed">
@@ -28,16 +20,19 @@ export function Modal(props: ModalProduct) {
             />
             <div className=" flex flex-col ">
               <div className="">
-                <p className="text-sm font-black">Descrição</p>
+                <p className=""></p>
+                <p className="text-sm font-bold">Descrição</p>
                 <p className="text-sm pb-4">
                   {props.description}
-                  <small>
-                    {props.brand} | {props.ram} |{" "}
-                    {props.hardisk}{" "}
-                  </small>
                 </p>
-                <p className="text-xl font-bold">
-                  kZ {props.firtPrice}{" "}
+
+                <p className="text-sm"><strong className="text-bold">Marca:</strong>{props?.brand}</p>
+                <p className="text-sm"><strong className="text-bold">RAM: </strong>{props?.ram} <strong>GB</strong></p>
+                <p className="text-sm"><strong className="text-bold">Disco Duro:</strong>{props?.hardisk}</p>
+                <p className="text-sm"><strong className="text-bold">Avarias:</strong>{props?.failure}</p>
+                <p className="text-xl pt-10 ">
+                  <small>Preço:</small>
+                 <strong className="font-bold"><small className="text-blue-600"> kZ</small> {props.firtPrice}{" "}</strong>
                 </p>
                 <p className="text-left font-light text-xs pb-3">
                   {props.failure}
