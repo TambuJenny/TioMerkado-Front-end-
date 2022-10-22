@@ -1,38 +1,54 @@
-import { Info, Storefront } from 'phosphor-react';
-import { Card } from '../DomainServices/Interfaces';
+import { Heart, Info, Storefront } from "phosphor-react";
+import { Card } from "../DomainServices/Interfaces";
 
-import * as Dialog from '@radix-ui/react-dialog';
+import * as Dialog from "@radix-ui/react-dialog";
 
-interface cardProps extends Card  {
-    
-  buscarDadosProdutos(id:string) : void;
+interface cardProps extends Card {
+  buscarDadosProdutos(id: string): void;
 }
-
-
 
 export function CardProduct(props: cardProps) {
   return (
-    <div className="h-[472px] w-72 border rounded-lg ">
-    <img src={props.images} className="h-56 max-w-72 pb-1 rounded-t-lg" alt="" />
-   <div className=" p-4">
-   <p className="text-sm font-bold pb-3">{props.productName?.toUpperCase()}</p>
-    <p className="text-left font-light pb-3 text-sm">{props.description}</p>
-    <label className="text-left font-light pb-3 text-sm"><span className='font-bold'>Marca:</span> {props.brand}</label>
-    <p className="text-2xl font-bold pb-3">KZ{" "+props.firtPrice}</p>
-    <p className="text-left font-light text-xs pb-3">{props.failure}</p> 
-   
-    <footer className="flex gap-10">
-      <a className="flex gap-2 items-center text-xs text-zinc-500" href="">
-        <Storefront size={25}/>
-        {props.user}
-      </a>
-      <Dialog.DialogTrigger onClick={props.buscarDadosProdutos} className="border-2 flex-row-reverse  gap-1  border-[#9DC2FF] font-bold  bg-white rounded flex space-x-10 h-[32px]  items-center p-1 text-sm text-blue-600 hover:drop-shadow-xl">
-        <Info  size={25}/>
-          Saber Mais
-      </Dialog.DialogTrigger>
-    </footer>
-   
-   </div>
-  </div>
+    <>
+      <div className="relative block bg-white">
+        <button
+          title=""
+          type="button"
+          className="absolute right-4 top-4 text-white"
+        >
+          <Heart size={32} weight="bold" color="#2764dd" />
+        </button>
+
+        <img
+          alt="Toy"
+          src={props.images}
+          className="h-56 w-full object-contain lg:h-72"
+        />
+
+        <div className="p-6">
+          <span className="inline-block bg-gradient-blue px-3 py-1 text-xs font-bold text-white">
+          {props.brand}
+          </span>
+
+          <h3 className="mt-4 text-lg font-bold">{props.productName?.toUpperCase()}</h3>
+
+          <p className="mt-2 text-sm font-medium text-gray-600">KZ{" " + props.firtPrice}</p>
+
+          <a className="mt-2 flex gap-2 items-center text-xs text-zinc-500" href="">
+            <Storefront size={25} />
+            {props.user}
+          </a>
+
+          <Dialog.DialogTrigger
+            type="button"
+            onClick={props.buscarDadosProdutos}
+            className="mt-4  gap-2 flex w-full items-center justify-center rounded-sm  border-2 bg-white border-[#9DC2FF] px-8 py-4"
+          >
+            <span className="text-sm font-bold text-blue-600"> Saber Mais </span>
+            <Info size={25} color = ""/>
+          </Dialog.DialogTrigger>
+        </div>
+      </div>
+    </>
   );
 }

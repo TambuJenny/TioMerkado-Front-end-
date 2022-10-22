@@ -26,5 +26,6 @@ export interface Card {
     ProductName:string;
     Images: string;
     Brand: string;
-    B
+    
+    mt-4 grid grid-cols-1 gap-px border border-gray-200 bg-gray-200 sm:grid-cols-2 lg:grid-cols-3
 }*/

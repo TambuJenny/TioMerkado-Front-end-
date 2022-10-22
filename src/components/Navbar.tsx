@@ -27,7 +27,7 @@ export function NavBar(props: NavbarProps) {
           >
             <span className="font-black">Tio</span>/Merkado
           </Link>
-          <Link to="" className="">
+          <Link to="/support" className="">
             Suporte
           </Link>
           <Link to="/newAccount" className="">
